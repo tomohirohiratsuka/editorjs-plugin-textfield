@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor.js Plugin</title>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div id="editorjs" class="dark"></div>
+<button id="save">Save</button>
+<button id="toggleTheme">Toggle Theme</button>
+<button id="toggleReadOnly">Toggle Read-Only</button>
+<script type="module">
+    import  TextField  from '../dist/textField.es.js';
+    const editor = new EditorJS({
+        // readOnly: true,
+        data: {
+          blocks: [
+            {
+              type: 'textField',
+              data: {
+                text: 'Hello, World!'
+              }
+            }
+          ]
+        },
+        tools: {
+            textField: {
+                class: TextField,
+                config: {
+                    placeholder: 'Enter your text here',
+                    inputType: 'text'
+                }
+            }
+        },
+        i18n: {
+            messages: {
+                tools: {
+                    textField: {
+                        'Full Width': '最大幅'
+                    }
+                }
+            }
+        }
+    });
+    //since read-only mode does not support saving, we need to temporarily disable it
+    const handleClick = async () => {
+        // await editor.readOnly.toggle(false);  // Temporarily disable read-only mode
+        editor.save().then((outputData) => {
+            console.log('Saved data:', outputData);
+            // editor.readOnly.toggle(true);  // Re-enable read-only mode
+        }).catch((error) => {
+            console.log('Saving failed:', error);
+        });
+    };
+    window.document.getElementById('save').addEventListener('click', handleClick);
+    const handleThemeToggle = () => {
+        const editorjs = window.document.getElementById('editorjs');
+        editorjs.classList.toggle('dark');
+    };
+    window.document.getElementById('toggleTheme').addEventListener('click', handleThemeToggle);
+    const handleReadOnlyToggle = () => {
+        editor.readOnly.toggle();
+    };
+    window.document.getElementById('toggleReadOnly').addEventListener('click', handleReadOnlyToggle);
+</script>
+</body>
+</html>

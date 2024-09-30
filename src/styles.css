@@ -1,0 +1,67 @@
+/* src/styles.css */
+
+.it__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+}
+.it__input {
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.dark .it__input {
+    background-color: inherit;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+.dark .it__input:focus {
+    border-color: rgba(255, 255, 255, 0.7);  /* ダークモード時のフォーカスボーダー色 */
+}
+
+/* can be toggle */
+.it__input--width-full {
+    width: 100%;
+}
+.it__input--width-lg {
+    width: 70%;
+}
+.it__input--width-md {
+    width: 50%;
+}
+.it__input--width-sm {
+    width: 30%;
+}
+
+.it__hide {
+    display: none;
+}
+
+.it__custom-placeholder {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+.it__custom-placeholder label {
+    font-size: 14px;
+}
+
+.it__input--font-xl {
+    font-size: 1.4rem;
+}
+.it__input--font-lg {
+    font-size: 1.2rem;
+}
+.it__input--font-md {
+    font-size: 1rem;
+}
+.it__input--font-sm {
+    font-size: 0.8rem;
+}
+.it__input--font-xs {
+    font-size: 0.6rem;
+}
+
