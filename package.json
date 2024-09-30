@@ -1,7 +1,6 @@
 {
-  "name": "@tomohiro.hiratsuka/editorjs-plugin-textfield",
+  "name": "editorjs-plugin-textfield",
   "version": "1.0.0",
-  "private": "true",
   "description": "A custom text field plugin for Editor.js",
   "main": "dist/textField.umd.js",
   "module": "dist/textField.es.js",
@@ -18,7 +17,7 @@
     "textfield"
   ],
   "author": "tomohiro.hiratsuka",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "@editorjs/editorjs": "^2.30.6"
   },
