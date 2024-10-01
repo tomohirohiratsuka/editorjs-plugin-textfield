@@ -128,5 +128,13 @@ const i18n = {
     }
 }
 ```
+
+# Theme
+Since this library bundle some css for both of light and dark.
+If you want to apply dark theme, you can set `dark` class to the parent element of the editor.
+```html
+<div id="editorjs" class="dark"></div>
+```
+
 ## License
 This project is licensed under the MIT License 
