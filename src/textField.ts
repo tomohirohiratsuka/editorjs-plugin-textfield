@@ -24,7 +24,8 @@ export default class TextField implements BlockTool {
             placeholder: this.config.placeholder as string,
             type: this.config.type || 'text',
             width: data.width || 'full',
-            fontSize: data.fontSize || 'md'
+            fontSize: data.fontSize || 'md',
+            position: data.position || 'center'
         };
         const container = this.createContainer()
         const input = this.createInput();
@@ -60,7 +61,7 @@ export default class TextField implements BlockTool {
 
     private createInputWrapper() {
         const wrapper = document.createElement('div');
-        wrapper.className = 'ce-tf__input-wrapper';
+        wrapper.className = `ce-tf__input-wrapper ce-tf__input-wrapper--${this.data.position}`;
         return wrapper;
     }
 
@@ -369,6 +370,7 @@ export default class TextField implements BlockTool {
             this.nodes.inputWrapper.classList.remove(`ce-tf__input-wrapper--${pos}`);
         })
         this.nodes.inputWrapper.classList.add(`ce-tf__input-wrapper--${position}`);
+        this.data.position = position;
     }
 
     /**

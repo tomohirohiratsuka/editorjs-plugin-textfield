@@ -18,6 +18,7 @@ interface TextFieldData {
     type: TextFieldType;
     width: TextFieldWidthSize
     fontSize: TextFieldFontSize
+    position: TextFieldPosition
 }
 
 interface TextFieldConfig {

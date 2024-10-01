@@ -10,7 +10,6 @@
 .ce-tf__input-wrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
     padding: 1em 0em;
 }
 .ce-tf__input-wrapper--center {
