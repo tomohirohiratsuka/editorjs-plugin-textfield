@@ -76,7 +76,6 @@ export default class TextField implements BlockTool {
         input.className = 'it__input';
         input.addEventListener('input', (event) => {
             this.data.placeholder = (event.target as HTMLInputElement).value;
-            console.log(this.data.placeholder)
         });
         container.appendChild(label);
         container.appendChild(input);
