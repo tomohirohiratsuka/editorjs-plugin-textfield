@@ -16,8 +16,8 @@ export default class TextField implements BlockTool {
     constructor({data, api, config, readOnly , block}: TextFieldConstructorOptions) {
         this.api = api;
         this.config = {
-            inputType: config?.inputType || 'text',  // Set default input type
-            placeholder: config?.placeholder || 'Enter text here',  // Set default placeholder
+            inputType: config?.inputType || data?.inputType || 'text',  // Set default input type
+            placeholder: config?.placeholder || data?.placeholder || 'Enter text here',  // Set default placeholder
         }
         this.data = {
             value: data.value || '',
