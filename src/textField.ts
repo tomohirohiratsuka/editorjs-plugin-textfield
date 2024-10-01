@@ -16,13 +16,15 @@ export default class TextField implements BlockTool {
     constructor({data, api, config, readOnly , block}: TextFieldConstructorOptions) {
         this.api = api;
         this.config = {
-            inputType: config?.inputType || data?.inputType || 'text',  // Set default input type
+            type: config?.type || data?.type || 'text',  // Set default input type
             placeholder: config?.placeholder || data?.placeholder || 'Enter text here',  // Set default placeholder
         }
         this.data = {
             value: data.value || '',
-            inputType: this.config.inputType as string,  // Set default input type
-            placeholder: this.config.placeholder as string,  // Set default placeholder
+            placeholder: this.config.placeholder as string,
+            type: this.config.type || 'text',
+            width: 'full',
+            fontSize: 'md'
         };
         const container = this.createContainer()
         const input = this.createInput();
@@ -54,10 +56,10 @@ export default class TextField implements BlockTool {
 
     private createInput() {
         const input = document.createElement('input');
-        input.type = this.data.inputType; // Set input type based on selected option
+        input.type = this.data.type;
         input.value = this.data.value;
         input.placeholder = this.data.placeholder;
-        input.className = 'it__input'
+        input.className = `it__input it__input--font-${this.data.fontSize} it__input--width-${this.data.width}`
         input.addEventListener('input', (event) => {
             this.data.value = (event.target as HTMLInputElement).value;
         });
@@ -288,20 +290,22 @@ export default class TextField implements BlockTool {
      * @param size
      * @private
      */
-    private setWidth(size: 'sm' | 'md' | 'lg' | 'full') {
+    private setWidth(size: TextFieldWidthSize) {
         const sizes = ['sm', 'md', 'lg', 'full'];
         sizes.forEach((size) => {
             this.nodes.input.classList.remove(`it__input--width-${size}`);
         })
         this.nodes.input.classList.add(`it__input--width-${size}`);
+        this.data.width = size;
     }
 
-    private setFontSize(size: 'xs' | 'sm' | 'md' | 'lg' | 'xl') {
+    private setFontSize(size: TextFieldFontSize) {
         const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
         sizes.forEach((size) => {
             this.nodes.input.classList.remove(`it__input--font-${size}`);
         })
         this.nodes.input.classList.add(`it__input--font-${size}`);
+        this.data.fontSize = size;
     }
 
     /**
@@ -309,10 +313,10 @@ export default class TextField implements BlockTool {
      * @param type
      * @private
      */
-    private setType(type: AvailableTextFieldTypes) {
+    private setType(type: TextFieldType) {
         this.nodes.input.type = type;
         this.nodes.input.value = '';
-        //may be custom class needed
+        this.data.type = type;
     }
 
     /**

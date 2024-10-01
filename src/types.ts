@@ -1,22 +1,6 @@
-interface TextFieldData {
-    value: string;
-    inputType: string;  // Add field for input type
-    placeholder: string;
-}
-
-interface TextFieldConfig {
-    inputType?: string;
-    placeholder?: string;
-}
-
-interface TextFieldNodeMap {
-    input: HTMLInputElement;
-    container: HTMLDivElement;
-    placeholderInput: HTMLDivElement;
-}
-
-type AvailableTextFieldTypes =
-    'text'
+type TextFieldWidthSize = 'sm' | 'md' | 'lg' | 'full';
+type TextFieldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+type TextFieldType = 'text'
     | 'password'
     | 'email'
     | 'number'
@@ -27,3 +11,23 @@ type AvailableTextFieldTypes =
     | 'datetime-local'
     | 'week'
     | 'month'
+interface TextFieldData {
+    value: string;
+    placeholder: string;
+    type: TextFieldType;
+    width: TextFieldWidthSize
+    fontSize: TextFieldFontSize
+}
+
+interface TextFieldConfig {
+    type?: TextFieldType;
+    placeholder?: string;
+}
+
+interface TextFieldNodeMap {
+    input: HTMLInputElement;
+    container: HTMLDivElement;
+    placeholderInput: HTMLDivElement;
+}
+
+
