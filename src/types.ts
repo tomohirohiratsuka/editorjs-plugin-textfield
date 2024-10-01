@@ -11,6 +11,7 @@ type TextFieldType = 'text'
     | 'datetime-local'
     | 'week'
     | 'month'
+type TextFieldPosition = 'left' | 'center' | 'right'
 interface TextFieldData {
     value: string;
     placeholder: string;
@@ -28,6 +29,7 @@ interface TextFieldNodeMap {
     input: HTMLInputElement;
     container: HTMLDivElement;
     placeholderInput: HTMLDivElement;
+    inputWrapper: HTMLDivElement
 }
 
 

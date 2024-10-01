@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor.js Plugin</title>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -13,6 +12,7 @@
 <button id="save">Save</button>
 <button id="toggleTheme">Toggle Theme</button>
 <button id="toggleReadOnly">Toggle Read-Only</button>
+<div id="viewer" class="dark"></div>
 <script type="module">
     import  TextField  from '../dist/textField.es.js';
     const editor = new EditorJS({
@@ -51,6 +51,7 @@
         // await editor.readOnly.toggle(false);  // Temporarily disable read-only mode
         editor.save().then((outputData) => {
             console.log('Saved data:', outputData);
+            viewer.render(outputData);
             // editor.readOnly.toggle(true);  // Re-enable read-only mode
         }).catch((error) => {
             console.log('Saving failed:', error);
@@ -66,6 +67,40 @@
         editor.readOnly.toggle();
     };
     window.document.getElementById('toggleReadOnly').addEventListener('click', handleReadOnlyToggle);
+
+    //viewer
+    const viewer = new EditorJS({
+        readOnly: true,
+        holder: 'viewer',
+        data: {
+          blocks: [
+            {
+              type: 'textField',
+              data: {
+                text: 'Hello, World!'
+              }
+            }
+          ]
+        },
+        tools: {
+            textField: {
+                class: TextField,
+                config: {
+                    placeholder: 'Enter your text here',
+                    inputType: 'text'
+                }
+            },
+        },
+        i18n: {
+            messages: {
+                tools: {
+                    textField: {
+                        'Full Width': '最大幅'
+                    }
+                }
+            }
+        }
+    });
 </script>
 </body>
 </html>

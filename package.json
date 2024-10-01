@@ -1,6 +1,6 @@
 {
   "name": "editorjs-plugin-textfield",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A custom text field plugin for Editor.js",
   "main": "dist/textField.umd.js",
   "module": "dist/textField.es.js",
@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:watch": "vite build --watch",
+    "build:watch": "vite build --watch --clearScreen",
     "serve": "vite preview"
   },
   "keywords": [

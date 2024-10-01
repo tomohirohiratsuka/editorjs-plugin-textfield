@@ -23,19 +23,23 @@ export default class TextField implements BlockTool {
             value: data.value || '',
             placeholder: this.config.placeholder as string,
             type: this.config.type || 'text',
-            width: 'full',
-            fontSize: 'md'
+            width: data.width || 'full',
+            fontSize: data.fontSize || 'md'
         };
         const container = this.createContainer()
         const input = this.createInput();
+        const inputWrapper = this.createInputWrapper()
         const placeholderInput = this.createPlaceholderInput();
-        container.appendChild(input);
+        inputWrapper.appendChild(input);
+        container.appendChild(inputWrapper);
         container.appendChild(placeholderInput);
         this.nodes = {
             input,
             container,
+            inputWrapper,
             placeholderInput,
         }
+
         this.isReadOnly = readOnly;
 
     }
@@ -50,8 +54,14 @@ export default class TextField implements BlockTool {
 
     private createContainer() {
         const container = document.createElement('div');
-        container.className = 'it__container';
+        container.className = 'ce-tf__container';
         return container;
+    }
+
+    private createInputWrapper() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'ce-tf__input-wrapper';
+        return wrapper;
     }
 
     private createInput() {
@@ -59,7 +69,7 @@ export default class TextField implements BlockTool {
         input.type = this.data.type;
         input.value = this.data.value;
         input.placeholder = this.data.placeholder;
-        input.className = `it__input it__input--font-${this.data.fontSize} it__input--width-${this.data.width}`
+        input.className = `ce-tf__input ce-tf__input--font-${this.data.fontSize} ce-tf__input--width-${this.data.width}`
         input.addEventListener('input', (event) => {
             this.data.value = (event.target as HTMLInputElement).value;
         });
@@ -68,14 +78,14 @@ export default class TextField implements BlockTool {
 
     private createPlaceholderInput() {
         const container = document.createElement('div');
-        container.className = 'it__hide'; //default hide
+        container.className = 'ce-tf__hide'; //default hide
         const label = document.createElement('label');
         label.innerText = this.api.i18n.t('Placeholder');
         const input = document.createElement('input');
         input.value = this.data.placeholder;
         input.type = 'text'
         input.placeholder = 'Type here placeholder';
-        input.className = 'it__input';
+        input.className = 'ce-tf__input';
         input.addEventListener('input', (event) => {
             this.data.placeholder = (event.target as HTMLInputElement).value;
         });
@@ -173,6 +183,35 @@ export default class TextField implements BlockTool {
                                         title: this.api.i18n.t('X-Large'),
                                         onActivate: () => {
                                             this.setFontSize('xl');
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            icon: '',
+                            title: this.api.i18n.t('Position'),
+                            children: {
+                                items: [
+                                    {
+                                        icon: ``,
+                                        title: this.api.i18n.t('Left'),
+                                        onActivate: () => {
+                                            this.setPosition('left');
+                                        }
+                                    },
+                                    {
+                                        icon: ``,
+                                        title: this.api.i18n.t('Center'),
+                                        onActivate: () => {
+                                            this.setPosition('center');
+                                        }
+                                    },
+                                    {
+                                        icon: ``,
+                                        title: this.api.i18n.t('Right'),
+                                        onActivate: () => {
+                                            this.setPosition('right');
                                         }
                                     }
                                 ]
@@ -276,7 +315,7 @@ export default class TextField implements BlockTool {
                             icon: ``,
                             title: this.api.i18n.t('Placeholder'),
                             onActivate: () => {
-                                this.nodes.placeholderInput.classList.toggle('it__custom-placeholder');
+                                this.nodes.placeholderInput.classList.toggle('ce-tf__custom-placeholder');
                             }
                         }
                     ]
@@ -293,18 +332,23 @@ export default class TextField implements BlockTool {
     private setWidth(size: TextFieldWidthSize) {
         const sizes = ['sm', 'md', 'lg', 'full'];
         sizes.forEach((size) => {
-            this.nodes.input.classList.remove(`it__input--width-${size}`);
+            this.nodes.input.classList.remove(`ce-tf__input--width-${size}`);
         })
-        this.nodes.input.classList.add(`it__input--width-${size}`);
+        this.nodes.input.classList.add(`ce-tf__input--width-${size}`);
         this.data.width = size;
     }
 
+    /**
+     * Set font size of input field
+     * @param size
+     * @private
+     */
     private setFontSize(size: TextFieldFontSize) {
         const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
         sizes.forEach((size) => {
-            this.nodes.input.classList.remove(`it__input--font-${size}`);
+            this.nodes.input.classList.remove(`ce-tf__input--font-${size}`);
         })
-        this.nodes.input.classList.add(`it__input--font-${size}`);
+        this.nodes.input.classList.add(`ce-tf__input--font-${size}`);
         this.data.fontSize = size;
     }
 
@@ -317,6 +361,14 @@ export default class TextField implements BlockTool {
         this.nodes.input.type = type;
         this.nodes.input.value = '';
         this.data.type = type;
+    }
+
+    private setPosition(position: TextFieldPosition) {
+        const positions = ['left', 'center', 'right'];
+        positions.forEach((pos) => {
+            this.nodes.inputWrapper.classList.remove(`ce-tf__input-wrapper--${pos}`);
+        })
+        this.nodes.inputWrapper.classList.add(`ce-tf__input-wrapper--${position}`);
     }
 
     /**

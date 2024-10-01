@@ -1,67 +1,84 @@
 /* src/styles.css */
 
-.it__container {
+.ce-tf__container {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
-    padding: 1em;
+    align-items: center;
 }
-.it__input {
+.ce-tf__input-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1em 0em;
+}
+.ce-tf__input-wrapper--center {
+    justify-content: center;
+}
+.ce-tf__input-wrapper--left {
+    justify-content: flex-start;
+}
+.ce-tf__input-wrapper--right {
+    justify-content: flex-end;
+}
+.ce-tf__input {
     border: 1px solid #ccc;
-    padding: 10px 0px;
+    padding: 10px;
     font-size: 16px;
     border-radius: 6px;
 }
 
-.dark .it__input {
+.dark .ce-tf__input {
     background-color: inherit;
     border-color: rgba(255, 255, 255, 0.2);
     color: white;
 }
-.dark .it__input:focus {
+.dark .ce-tf__input:focus {
     border-color: rgba(255, 255, 255, 0.7);  /* ダークモード時のフォーカスボーダー色 */
 }
 
 /* can be toggle */
-.it__input--width-full {
+.ce-tf__input--width-full {
     width: 100%;
 }
-.it__input--width-lg {
+.ce-tf__input--width-lg {
     width: 70%;
 }
-.it__input--width-md {
+.ce-tf__input--width-md {
     width: 50%;
 }
-.it__input--width-sm {
+.ce-tf__input--width-sm {
     width: 30%;
 }
 
-.it__hide {
+.ce-tf__hide {
     display: none;
 }
 
-.it__custom-placeholder {
+.ce-tf__custom-placeholder {
     display: flex;
+    width: 100%;
     flex-direction: column;
     margin-top: 1em;
 }
-.it__custom-placeholder label {
+.ce-tf__custom-placeholder label {
     font-size: 14px;
 }
 
-.it__input--font-xl {
+.ce-tf__input--font-xl {
     font-size: 1.4rem;
 }
-.it__input--font-lg {
+.ce-tf__input--font-lg {
     font-size: 1.2rem;
 }
-.it__input--font-md {
+.ce-tf__input--font-md {
     font-size: 1rem;
 }
-.it__input--font-sm {
+.ce-tf__input--font-sm {
     font-size: 0.8rem;
 }
-.it__input--font-xs {
+.ce-tf__input--font-xs {
     font-size: 0.6rem;
 }
 
