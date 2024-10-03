@@ -53,48 +53,6 @@ export default class TextField implements BlockTool {
         };
     }
 
-    private createContainer() {
-        const container = document.createElement('div');
-        container.className = 'ce-tf__container';
-        return container;
-    }
-
-    private createInputWrapper() {
-        const wrapper = document.createElement('div');
-        wrapper.className = `ce-tf__input-wrapper ce-tf__input-wrapper--${this.data.position}`;
-        return wrapper;
-    }
-
-    private createInput() {
-        const input = document.createElement('input');
-        input.type = this.data.type;
-        input.value = this.data.value;
-        input.placeholder = this.data.placeholder;
-        input.className = `ce-tf__input ce-tf__input--font-${this.data.fontSize} ce-tf__input--width-${this.data.width}`
-        input.addEventListener('input', (event) => {
-            this.data.value = (event.target as HTMLInputElement).value;
-        });
-        return input;
-    }
-
-    private createPlaceholderInput() {
-        const container = document.createElement('div');
-        container.className = 'ce-tf__hide'; //default hide
-        const label = document.createElement('label');
-        label.innerText = this.api.i18n.t('Placeholder');
-        const input = document.createElement('input');
-        input.value = this.data.placeholder;
-        input.type = 'text'
-        input.placeholder = 'Type here placeholder';
-        input.className = 'ce-tf__input';
-        input.addEventListener('input', (event) => {
-            this.data.placeholder = (event.target as HTMLInputElement).value;
-        });
-        container.appendChild(label);
-        container.appendChild(input);
-        return container;
-    }
-
     render() {
         return this.nodes.container;
     }
@@ -316,13 +274,71 @@ export default class TextField implements BlockTool {
                             icon: ``,
                             title: this.api.i18n.t('Placeholder'),
                             onActivate: () => {
-                                this.nodes.placeholderInput.classList.toggle('ce-tf__custom-placeholder');
+                                this.toggleCustomPlaceholderInput()
                             }
                         }
                     ]
                 }
             }
         ];
+    }
+
+    /**
+     * Create container for block
+     * @private
+     */
+    private createContainer() {
+        const container = document.createElement('div');
+        container.className = 'ce-tf__container';
+        return container;
+    }
+
+    /**
+     * Create wrapper for input field
+     * @private
+     */
+    private createInputWrapper() {
+        const wrapper = document.createElement('div');
+        wrapper.className = `ce-tf__input-wrapper ce-tf__input-wrapper--${this.data.position}`;
+        return wrapper;
+    }
+
+    /**
+     * Create input field
+     * @private
+     */
+    private createInput() {
+        const input = document.createElement('input');
+        input.type = this.data.type;
+        input.value = this.data.value;
+        input.placeholder = this.data.placeholder;
+        input.className = `ce-tf__input ce-tf__input--font-${this.data.fontSize} ce-tf__input--width-${this.data.width}`
+        input.addEventListener('input', (event) => {
+            this.data.value = (event.target as HTMLInputElement).value;
+        });
+        return input;
+    }
+
+    /**
+     * Create custom placeholder input
+     * @private
+     */
+    private createPlaceholderInput() {
+        const container = document.createElement('div');
+        container.className = 'ce-tf__hide'; //default hide
+        const label = document.createElement('label');
+        label.innerText = this.api.i18n.t('Placeholder');
+        const input = document.createElement('input');
+        input.value = this.data.placeholder;
+        input.type = 'text'
+        input.placeholder = 'Type here placeholder';
+        input.className = 'ce-tf__input';
+        input.addEventListener('input', (event) => {
+            this.data.placeholder = (event.target as HTMLInputElement).value;
+        });
+        container.appendChild(label);
+        container.appendChild(input);
+        return container;
     }
 
     /**
@@ -364,6 +380,11 @@ export default class TextField implements BlockTool {
         this.data.type = type;
     }
 
+    /**
+     * Set position of input field
+     * @param position
+     * @private
+     */
     private setPosition(position: TextFieldPosition) {
         const positions = ['left', 'center', 'right'];
         positions.forEach((pos) => {
@@ -371,6 +392,14 @@ export default class TextField implements BlockTool {
         })
         this.nodes.inputWrapper.classList.add(`ce-tf__input-wrapper--${position}`);
         this.data.position = position;
+    }
+
+    /**
+     * Toggle visibility of custom placeholder input
+     * @private
+     */
+    private toggleCustomPlaceholderInput() {
+        this.nodes.placeholderInput.classList.toggle('ce-tf__custom-placeholder');
     }
 
     /**

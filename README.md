@@ -68,7 +68,7 @@ This Tool returns `data` with following format
 | Field     | Type         | Description                               |
 | --------- | ------------ | ----------------------------------------- |
 | value   | `string` | the input field value |
-| placeholder   | `placeholder` | the placeholder value when it's set |
+| placeholder   | `string` | the placeholder value when it's set |
 | type   | `TextFieldType` | the input field type |
 | width   | `TextFieldWidthSize` | the input field width |
 | fontSize   | `TextFieldFontSize` | the input field font size |
