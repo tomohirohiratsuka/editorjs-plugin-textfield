@@ -1,5 +1,4 @@
-/* src/styles.css */
-
+/* Block container  */
 .ce-tf__container {
     display: flex;
     width: 100%;
@@ -7,6 +6,7 @@
     justify-content: center;
     align-items: center;
 }
+/* Input wrapper */
 .ce-tf__input-wrapper {
     width: 100%;
     display: flex;
@@ -21,13 +21,13 @@
 .ce-tf__input-wrapper--right {
     justify-content: flex-end;
 }
+/* Input */
 .ce-tf__input {
     border: 1px solid #ccc;
     padding: 10px;
     font-size: 16px;
     border-radius: 6px;
 }
-
 .dark .ce-tf__input {
     background-color: inherit;
     border-color: rgba(255, 255, 255, 0.2);
@@ -36,8 +36,7 @@
 .dark .ce-tf__input:focus {
     border-color: rgba(255, 255, 255, 0.7);  /* ダークモード時のフォーカスボーダー色 */
 }
-
-/* can be toggle */
+/* Input Width toggle */
 .ce-tf__input--width-full {
     width: 100%;
 }
@@ -50,21 +49,7 @@
 .ce-tf__input--width-sm {
     width: 30%;
 }
-
-.ce-tf__hide {
-    display: none;
-}
-
-.ce-tf__custom-placeholder {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 1em;
-}
-.ce-tf__custom-placeholder label {
-    font-size: 14px;
-}
-
+/* Input font size toggle */
 .ce-tf__input--font-xl {
     font-size: 1.4rem;
 }
@@ -81,3 +66,18 @@
     font-size: 0.6rem;
 }
 
+/* Common Display toggle */
+.ce-tf__hide {
+    display: none;
+}
+
+/* Custom Placeholder Input */
+.ce-tf__custom-placeholder {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 1em;
+}
+.ce-tf__custom-placeholder label {
+    font-size: 14px;
+}
